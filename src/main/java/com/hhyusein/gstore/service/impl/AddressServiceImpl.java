@@ -1,6 +1,7 @@
 package com.hhyusein.gstore.service.impl;
 
 import com.hhyusein.gstore.Repository.AddressRepository;
+import com.hhyusein.gstore.exception.DuplicateRecordException;
 import com.hhyusein.gstore.exception.EmptyRecordException;
 import com.hhyusein.gstore.exception.ResourceNotFoundException;
 import com.hhyusein.gstore.model.Address;
@@ -59,9 +60,15 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    //TODO: Add Exception, if Address already exists
-    // Criteria by Line_1 and Line_2 if already exists in the DB, throw DuplicateRecordException.
     public Address saveAddress(Address address) {
+
+        Address lookForLine1 = addressRepository.findByLine1(address.getLine1());
+        Address lookForLine2 = addressRepository.findByLine2(address.getLine2());
+
+        if (lookForLine1 != null || lookForLine2 != null) {
+            throw new DuplicateRecordException(String.format("This Address already exists at our DB with ID %d", address.getAddressId()));
+        }
+
         return addressRepository.save(address);
     }
 

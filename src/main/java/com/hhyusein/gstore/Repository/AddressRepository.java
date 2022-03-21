@@ -14,4 +14,7 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
     Optional<Address> findByCountry(String country);
     Optional<Address> findByStateProvinceCountry(String stateProvinceCountry);
     Optional<Address> findByZipPostCode(String zipPostCode);
+
+    Address findByLine1(String line1);
+    Address findByLine2(String line2);
 }
