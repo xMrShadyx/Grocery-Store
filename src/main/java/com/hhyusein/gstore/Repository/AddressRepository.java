@@ -17,4 +17,7 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Address findByLine1(String line1);
     Address findByLine2(String line2);
+
+    Address updateAddress(Address address, Long id);
+    void deleteAddressById(Long id);
 }

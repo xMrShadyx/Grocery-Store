@@ -89,7 +89,7 @@ public class AddressServiceImpl implements AddressService {
     }
 
     @Override
-    public void deleteAddress(Long id) {
+    public void deleteAddressById(Long id) {
         Address checkIfIdIsInDatabase = addressRepository.findById(id)
                 .orElseThrow(() -> new EmptyRecordException(String.format("Can't complete delete operation ID %d does not exist.", id)));
         addressRepository.deleteById(checkIfIdIsInDatabase.getAddressId());
