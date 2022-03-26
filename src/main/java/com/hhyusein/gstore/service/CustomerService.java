@@ -3,7 +3,6 @@ package com.hhyusein.gstore.service;
 import com.hhyusein.gstore.model.Customer;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface CustomerService {
 
